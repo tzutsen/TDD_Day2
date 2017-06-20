@@ -5,21 +5,26 @@ namespace BooksStore.Models
 {
     public class PotterCart
     {
-        private Dictionary<int, int> _unitPrice = new Dictionary<int, int>();
-        private Dictionary<int, double> _discount = new Dictionary<int, double>();
-
-        public PotterCart()
+        //各集數金額
+        private Dictionary<int, int> _unitPrice = new Dictionary<int, int>()
         {
-            _unitPrice.Add(1,100);
-            _discount.Add(1,1);
-        }
+            {1, 100},
+            {2, 100},
+            {3, 100},
+            {4, 100},
+            {5, 100}
+        };
 
-        public PotterCart(Dictionary<int, int> price, Dictionary<int, double> discount)
+        //折扣
+        private Dictionary<int, double> _discount = new Dictionary<int, double>()
         {
-            _unitPrice = price;
-            _discount = discount;
-        }
-
+            {1, 1.00},
+            {2, 0.95},
+            {3, 0.90},
+            {4, 0.80},
+            {5, 0.75}
+        };
+        
         public double CalculatePrice(Dictionary<int, int> books)
         {
             var booksCount = 0;
