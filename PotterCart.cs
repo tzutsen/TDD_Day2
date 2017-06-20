@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BooksStore.Models
 {
@@ -27,14 +28,22 @@ namespace BooksStore.Models
         
         public double CalculatePrice(Dictionary<int, int> books)
         {
-            var booksCount = 0;
-            var priceBeforeDiscount = 0;
-            foreach (var book in books)
+            double totalPrice=0;
+            for (int i = books.Min(n => n.Value); i <= books.Max(n => n.Value); i++)
             {
-                priceBeforeDiscount += _unitPrice[book.Key];
-                booksCount++;
+                var priceBeforeDiscount = 0;
+                int booksCount = 0;
+                foreach (var book in books)
+                { 
+                    if (book.Value - i >= 0)
+                    {
+                        priceBeforeDiscount += _unitPrice[book.Key];
+                        booksCount ++;
+                    }
+                }
+
+                totalPrice += priceBeforeDiscount * _discount[booksCount];
             }
-            double totalPrice = priceBeforeDiscount * _discount[booksCount];
             return totalPrice;
         }
     }
