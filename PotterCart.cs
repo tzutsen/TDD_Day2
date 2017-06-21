@@ -29,7 +29,7 @@ namespace BooksStore.Models
         public double CalculatePrice(Dictionary<int, int> books)
         {
             double totalPrice=0;
-            for (int i = books.Min(n => n.Value); i <= books.Max(n => n.Value); i++)
+            for (int i = 1; i <= books.Max(n => n.Value); i++)
             {
                 var priceBeforeDiscount = 0;
                 int booksCount = 0;
