@@ -134,7 +134,7 @@ namespace BooksStore.Models.Tests
         {
             // arrange
             _books.Add(1, 1);//key：第1集，value：1本
-            _books.Add(2, 2);//key：第2集，value：1本
+            _books.Add(2, 2);//key：第2集，value：2本
             _books.Add(3, 2);//key：第3集，value：2本
 
             var target = new PotterCart();
@@ -143,6 +143,24 @@ namespace BooksStore.Models.Tests
             var actual = target.CalculatePrice(_books);
             //應該得到的結果
             int expected = 460;
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void 第二集買了兩本_第二集買了四本_價格應為580()
+        {
+            // arrange
+            _books.Add(2, 2);//key：第2集，value：2本
+            _books.Add(3, 4);//key：第3集，value：4本
+
+            var target = new PotterCart();
+            // act
+            //程式計算的結果
+            var actual = target.CalculatePrice(_books);
+            //應該得到的結果
+            int expected = 580;
 
             // assert
             Assert.AreEqual(expected, actual);
